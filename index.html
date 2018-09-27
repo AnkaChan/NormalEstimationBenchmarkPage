@@ -1,0 +1,397 @@
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+    body {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-weight:400;
+        font-size:16px;
+        margin-left: auto;
+        margin-right: auto;
+        <!-- width: 1100px; -->
+    }
+    table{width:80%}
+    .content{
+       margin:auto;
+    width: 80%
+    }
+
+    h1 {
+        font-weight:300;
+    }
+
+    .disclaimerbox {
+        background-color: #eee;
+        border: 1px solid #eeeeee;
+        border-radius: 10px ;
+        -moz-border-radius: 10px ;
+        -webkit-border-radius: 10px ;
+        padding: 20px;
+    }
+
+    video.header-vid {
+        height: 140px;
+        border: 1px solid black;
+        border-radius: 10px ;
+        -moz-border-radius: 10px ;
+        -webkit-border-radius: 10px ;
+    }
+
+    img.header-img {
+        height: 140px;
+        border: 1px solid black;
+        border-radius: 10px ;
+        -moz-border-radius: 10px ;
+        -webkit-border-radius: 10px ;
+    }
+
+    img.rounded {
+        border: 1px solid #eeeeee;
+        border-radius: 10px ;
+        -moz-border-radius: 10px ;
+        -webkit-border-radius: 10px ;
+    }
+
+    a:link,a:visited
+    {
+        color: #1367a7;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #208799;
+    }
+
+    td.dl-link {
+        height: 160px;
+        text-align: center;
+        font-size: 22px;
+    }
+
+    .vert-cent {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    hr
+    {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(10, 10, 10, 0),
+    rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0));
+        margin: 1em 0 1em 0;
+    }
+</style>
+
+<html>
+  <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-10550309-6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-10550309-6');
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+	<script type="text/javascript"
+	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+        <title>Multi-Normal Estimation via Pair Consistency Voting</title>
+        <meta property="og:title" content="PCV" />	
+		
+
+  </head>
+
+  <body>
+    <br>
+    <center>
+      <span style="font-size:30px">Multi-Normal Estimation via Pair Consistency Voting
+      </span>
+<br><br>    <span style="font-size:20px">TVCG</span>      
+    </center>
+
+
+    <br>
+    <table align=center width=900px>
+	<tr>
+        <td align=center width=100px>
+        <center>
+		<!-- Add your front page here --->
+        <span style="font-size:20px"><a href="http://">Jie Zhang</a></span>
+        </center>
+        </td>
+
+        <td align=center width=100px>
+        <center>
+        <span style="font-size:20px"><a href="https://jjcao.github.io/">Junjie Cao</a></span>
+        </center>
+        </td>
+
+        <td align=center width=100px>
+        <center>
+		<!-- Add your front page here --->
+        <span style="font-size:20px"><a href="http://">Xiuping Liu</span>
+        </center>
+        </td>
+
+        <td align=center width=100px>
+        <center>
+        <span style="font-size:20px"><a href="http://ankachan.github.io/">He Chen</a></span>
+        </center>
+        </td>
+		<td align=center width=100px>
+        <center>
+        <span style="font-size:20px"><a href="http://">Bo Li</a></span>
+        </center>
+        </td>
+		<td align=center width=100px>
+        <center>
+        <span style="font-size:20px"><a href="http://staff.ustc.edu.cn/~lgliu/">Ligang Liu</a></span>
+        </center>
+        </td>
+     </tr>
+    </table>
+
+    <!-- <br> -->
+    <table align=center width=700px>
+       <tr>
+        <td align=center width=100px>
+          <center>
+          <span style="font-size:19px">Dalian University of Technololy</span><br>
+<span style="font-size:19px">Liaoning Normal University<br> University of Science and Technology of China 
+</span></center>
+        </td>
+     </tr>
+    </table>
+
+            <br>
+            <table align=center style="width:80%">
+                <tr>
+                  <!-- <td width=600px> -->
+		    <td>
+                      <center>
+                          <a href="./figs/MultiNormal.png"><img src = "./figs/MultiNormal.png" height="400px"></img></href></a><br>
+                    </center>
+                    </td>
+                </tr>
+<!-- <td width=600px> -->
+<td>  
+                      <center>
+                          <span style="font-size:14px"><i> <span style="font-weight:bold"></span> The normals of feature points, the intersection points of multiple smooth surfaces, are ambiguous and undefined.
+                    </center>
+                    </td>
+                </tr>
+            </table>
+<!-- <hr class = "divider"> -->
+<div class='content'>
+            <br>
+	    This paper presents a unified definition for point cloud normal of feature and non-feature points, which allows
+		feature points to possess multiple normals.
+		This definition facilitates several succeeding operations, such as feature points extraction and point cloud filtering.
+		We also develop a feature preserving normal estimation method which outputs multiple normals per feature point.
+		<br />
+		<br />
+		The core of the method is a pair consistency voting scheme. All neighbor point pairs vote for the local tangent 
+		plane. Each vote takes the fitting residuals of the pair of points and their preliminary normal consistency into 
+		consideration. Thus the pairs from the same subspace and relatively far off features dominate the voting. An adaptive 
+		strategy is designed to overcome sampling anisotropy.
+		<br />
+		<br />
+		In addition, we introduce an error measure compatible with traditional normal estimators, and present the 
+		first benchmark for normal estimation, composed of 152 synthesized data with various features and sampling 
+		densities, and 288 real scans with different noise levels. Comprehensive and quantitative experiments show 
+		that our method generates faithful feature preserving normals and outperforms previous cutting edge normal 
+		estimation methods, including the latest deep learning based method.
+	    </div>
+            <br><br>
+            <hr>
+            <table align=center width=650>
+              <center><h1>Paper</h1></center>
+              <tr>
+                <td style="padding:1em"><a href="https://arxiv.org/abs/1712.06584"><img style="height:180px" src="./figs/TitleFig.png"/></a></td>
+                <td style="padding:1em"><span style="font-size:14pt">Jie Zhang, Junjie Cao (co-first authors), Xiuping Liu, He Chen, Bo Li, Ligang Liu.
+				<br><br>
+                    End-to-end Recovery of Human Shape and Pose<br><br>
+                    CVPR 2018.<br> </span>
+                </td>
+              </tr>
+            </table>
+            <br>
+
+            <table align=center width=500px>
+              <tr>
+		<span style="font-size:14pt">
+		  <center>
+                      <a href="https://arxiv.org/pdf/1712.06584.pdf">[pdf]</a>
+                      <a href="./resources/bibtex.txt">[bibtex]</a>
+		      <a href="https://github.com/akanazawa/hmr">[code, model and data!]</a>
+                    </center>
+		</span>				  		  
+                <!-- <td> -->
+		<!--   <span style="font-size:14pt"><center> -->
+                <!--       <a href="https://arxiv.org/pdf/1712.06584.pdf">[pdf]</a> -->
+                <!--     </center> -->
+		<!--     </span> -->
+		<!-- </td> -->
+		
+                <!-- <td><span style="font-size:14pt"><center> -->
+                <!--       <a href="./resources/bibtex.txt">[Bibtex]</a> -->
+                <!-- </center></td> -->
+                <!-- <td><span style="font-size:14pt"><center> -->
+                <!--       <a href="https://github.com/akanazawa/hmr">[Code, model and data!]</a> -->
+                <!-- </center></td> -->
+
+              </tr>
+            </table>
+            <br>
+            <hr>
+            <center><h1>Video(If have any)</h1></center> 
+            <table align=center width=1000px> 
+              <tr> 
+                <center> 
+		  <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/bmMV9aJKa-c" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe> -->
+		  <iframe width="840" height="472" src="https://www.youtube.com/embed/bmMV9aJKa-c" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                </center> 
+              </tr> 
+            </table>	       
+	    <br>	  
+	    <hr>
+            <center><h1>Overview</h1></center> 
+            <table align=center width=1000px> 
+              <tr> 
+		<center> 
+		  <img class="round" style="height:300" src="./figs/Pipeline.png"/> 
+		</center>
+		<div class='content'>
+              <!-- <td width=600px> -->
+		<!-- <center> -->
+		<span style="font-size:14px"><i> <span style="font-weight:bold">Overview
+		      of the proposed framework.</span> Some abstract of the algorithm.</i></span>
+		<!-- </center> -->
+		<!-- </td> -->
+		</div>
+              </tr>
+	      <tr>
+	      <td><center> <br> 
+		  <span style="font-size:20px"><a href='https://github.com/'>Code(Wait to be fulfilled)</a> </span>
+		  <br> 
+		</center>
+	      </td>
+	      </tr>
+	    </table>
+	    <br>
+	    <div class='content'>
+		<h3>Content</h3>
+		It is well known that the points are sampled from a piecewise manifold and the normal of a point lying on the interior 
+		of a smooth surface patch is the normal of the surface naturally.
+		But the normals of points on the intersections of different surface patches are ambiguous and undefined.
+		In this paper, we present a unified definition of point cloud normal for these two cases. We claim that a 
+		point may have multiple normals, each of which is determined by one surface patch where the point is lying.
+		A multi-normal estimation algorithm (PCV-MN) is also proposed.
+		The definition provides at least two benefits.
+		<br>
+		<br>
+		First, extracting multiple normals for feature points may enhance some succeeding applications such as reconstruction, rendering or feature detection.
+		Moreover, according to the definition, we improve the Root Mean Square measure ($RMS_\tau$). 
+		Thus the errors of estimated normals, especially for the feature points, could be analyzed quantitatively.
+		<br>
+		<br>
+		Our PCV-MN outputs a set of normals for each edge/corner point describing all the underlying surfaces at the
+		point. It is implemented by iterating a pair consistency voting (PCV) method. PCV is designed to extract the 
+		normal of the surface patch which takes the largest area among the patches sharing the point in the neighborhood. 
+		the most "significant" surface patch at the point.
+		For a point, we collect a set of candidate planes, each of which is determined by three randomly picked neighbors.
+		The current point's neighbors vote for each plane and the plane with the most votes win.
+		<br>
+		<br>
+		The contributions of our work are summarized as follows:
+		<br>
+		<br>
+		<ol>
+			<li>A definition of point cloud normal is given, which benefits some succeeding applications. A novel error 
+			measure compatible with the definition is also formulated to evaluate various normal estimators quantitatively.
+			<li>A voting approach based on pair consistency of preliminary normals is presented for normal estimation.
+			By taking all neighbor pairs into consideration, abundant reliable pairs dominate the voting and guarantee the robustness 
+			and effectiveness of the algorithm.
+			<li>We construct the first benchmark for normal estimation. The data, with various features, details, sampling densities, 
+			noise levels and resolutions, provides a sound and empirical basis for research on normal estimation.
+		</ol>			
+		  
+	   </div>
+	    <div class='content'>
+	     <h3>Normal Estimation Benchmark</h3>
+		 <h4>The error measure</h4>
+			Various normal estimators outputting a normal per point can be compared with the Root Mean Square with threshold (RMS$_{\tau}$) .
+			We generalize it to handle the case that each point has multiple ground truth normals. The Root Mean Square measure with threshold for multiple normals ($RMSM_{\tau}$) is defined as:
+			$$
+			RMSM_{\tau} = \sqrt{\frac{1}{|\mathcal{P}|}\sum_{p \in \mathcal{P}} (\frac{1}{|\widetilde{N}_{p}|}\sum_{\widetilde{n}_{p}\in\widetilde{N}_{p}} \min_{n_{p}\in N_{p}}f(\widehat{n_{p} \widetilde{n}_{p}})^2 )}, \\
+			$$
+			where $N_{p}$ and $\widetilde{N}_{p}$ are the ground truth and estimated normal sets of $p$, respectively, $\widehat{n_{p}\widetilde{n}_{p}}$ is the angle between $n_{p}$ and $\widetilde{n}_{p}$, $f(\widehat{n_{p} \widetilde{n}_{p}})$ is defined as\\
+			$$
+			f(\widehat{n_{p} \widetilde{n}_{p}}) = \left\{
+			\begin{aligned}
+			& \widehat{n_{p}\widetilde{n}_{p}}, \mbox{if } \widehat{n_{p} \widetilde{n}_{p}} < \tau \\
+			& \pi / 2, \mbox{otherwise}
+			\end{aligned}
+			\right. .
+			$$
+			For the algorithms outputting one normal per point, the size of $\widetilde{N}_{p}$ is one.
+			As in \cite{cgf/BoulchM12},  We set $\tau = 10^{\circ}$.
+			<h4>Ground truth dataset</h4>
+			<center>
+			<a href="./figs/ModelsSynthesis.png"><img src = "./figs/ModelsSynthesis.png" height="300px"></img></href></a><br>
+            </center>
+			<center>
+			<b>Synthesized Data Set</b>
+			</center>
+			<br>
+			
+			<center>
+			<a href="./figs/ModelsRealscan.jpg"><img src = "./figs/ModelsRealscan.jpg" height="480px"></img></href></a><br>
+            </center>
+			<center>
+			<b>Scanned Data Set</b>
+			</center>
+			<br>
+			
+			Our ground truth data are points with multiple normals per point. The points are sampled from triangular meshes, 
+			which are synthesized or reconstructed from real scanning data. To generate feature points precisely, we use the 
+			mesh's vertices as the samples and the normals of its surrounding faces as the ground truth normals of the point:
+			$$
+			N_{p_{i}}=\{n_{f}|f\mbox{ is a face containing } p_{i}\}.
+			$$
+			The variation of $N_{p_{i}}$ is very small when the point lies in the interior of some smooth surface patch, while that would
+			be large when the point is sampled from feature edges or corners.
+			<br>
+
+			Two groups of data are collected: 152 synthesized point clouds and 288 real scans.
+			The synthesized data are point clouds with various properties which are divided into five categories. 
+			Each captures one kind of challenges in normal estimation.
+			<br>
+			There are thirty, twenty one and twenty one point clouds for SharpFeature, Details and NonUniform categories
+			respectively, which are sampled from ten, seven and seven models using three different resolutions.
+			<br>
+			The SmallNoise category includes forty models with sharp features perturbed by centered Gaussian noise with the 
+			deviation defined as 30$\%$, 40$\%$, 50$\%$, and 60$\%$ average distance between points.
+			The last category is BigNoise. It includes forty models with sharp features perturbed by centered Gaussian noise 
+			with deviation defined as 0.2$\%$, 0.3$\%$, 0.4$\%$, and 0.5$\%$ of the diagonal of the axis-aligned bounding box.
+			
+			
+	    </div>
+		
+	    <hr>
+	 <!-- <br> -->
+			<!-- <center><h1>Acknowledgements</h1></center> -->
+			<div class='content'>
+			  <h3>Acknowledgements</h3>
+			Wait to be fulfilled.
+		     </div>
+
+        <br><br>
+</body>
+</html>
